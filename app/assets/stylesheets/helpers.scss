@@ -1,0 +1,5 @@
+@import 'mixins/generate_classes';
+.hide {
+  display: none !important;
+}
+.ui.popup{overflow:auto;}

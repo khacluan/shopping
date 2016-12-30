@@ -1,0 +1,14 @@
+.card{product_id: product.id}
+  .image= image_tag product.image.url(:square)
+  .content
+    .header= product.name
+    .meta
+      %a= product.brand
+  .extra.content
+    = link_to add_item_carts_path(product_id: product.id), remote: true, method: :post, class: 'ui vertial animated button black right floated' do
+      .hidden.content Shop
+      .visible.content
+        %i.shop.icon
+    %span
+      %i.dollar.icon
+      = product.price

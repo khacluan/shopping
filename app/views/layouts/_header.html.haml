@@ -1,0 +1,38 @@
+.ui.container.grid.middle.aligned
+  .row.six.column
+    .column
+      = image_tag 'logo.png', class: 'logo ui middle aligned image', size: '84x84'
+    .column
+      %h1 Beauty Shop
+      %span Beauty and Confident
+.ui.borderless.main.menu.sticky-nav
+  .ui.container
+    .header.item.sticky-logo-js.pl-0.hide{:href => "#"}
+      = image_tag 'logo.png', class: 'logo mr-10'
+      Beauty Shop
+    %a.item.pl-0{:href => "#"} Blog
+    %a.item{:href => "#"} Articles
+    .right.menu
+      .item
+        .ui.search
+          .ui.icon.input
+            %input.prompt{:placeholder => "Common passwords...", :type => "text"}/
+            %i.search.icon
+          .results
+      = render 'layouts/cart_header'
+      %a.ui.dropdown.item{:href => "#", :tabindex => "0"}
+        = image_tag 'missing', size: '46x46', class: 'ui circular image'
+        %i.dropdown.icon
+        .menu{:tabindex => "-1"}
+          .item Link Item
+          .item Link Item
+          .divider
+          .header Header Item
+          .item
+            %i.dropdown.icon
+            Sub Menu
+            .menu
+              .item Link Item
+              .item Link Item
+          .item Link Item
+

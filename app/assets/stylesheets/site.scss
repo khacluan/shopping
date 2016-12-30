@@ -1,0 +1,12 @@
+.menu {
+  .fixed {
+    z-index: 100 !important;
+    background-color: #fff;
+  }
+  .search {
+    max-width: 500px;
+  }
+}
+.sticky-nav {
+  z-index: 100 !important;
+}

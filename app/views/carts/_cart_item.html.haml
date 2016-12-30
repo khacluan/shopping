@@ -1,0 +1,10 @@
+.item{cart_item: item.id}
+  .ui.image.tiny= image_tag item.product.image.url(:thumb), size: '46x46'
+  .middle.aligned.content
+    .header
+      = item.product.name
+      \x
+      = item.quantity
+    .extra
+      = link_to remove_item_carts_path(product_id: item.product_id), remote: true, method: :delete, class: 'ui right' do
+        %i.icon.trash.outline

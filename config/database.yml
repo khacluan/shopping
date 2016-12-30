@@ -1,0 +1,18 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  username: root
+  password:
+
+development:
+  <<: *default
+  database: shopping_development
+
+test:
+  <<: *default
+  database: shopping_test
+
+production:
+  <<: *default
+  database: shopping_production

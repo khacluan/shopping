@@ -1,0 +1,20 @@
+.ui.item#cart_header
+  .browse.item
+    %i.shopping.bag.large.icon
+    .ui.floating.circular.teal.label.cart-badge.cart-item-badge-js= current_order.line_items.size
+  .ui.popup.bottom.left.transition.hidden
+    .ui.two.column.relaxed.divided.items.grid.cart-items-js{style: 'width: 300px;'}
+      - if current_order.line_items.present?
+        = render partial: 'carts/cart_item', collection: current_order.line_items, as: :item
+      - else
+        .item
+          .ui.tertiary.center.aligned.segment
+            %i.frown.icon
+            You haven't any product yet!
+
+:javascript
+  $('#cart_header .browse').popup({
+    on         : 'click',
+    position   : 'bottom right',
+    boundary   : '#cart_header .popup'
+  });

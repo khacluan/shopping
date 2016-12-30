@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phone: MyString
+  address: MyString
+  first_name: MyString
+  last_name: MyString
+  subtotal_price: 9.99
+  total_price: 9.99
+
+two:
+  phone: MyString
+  address: MyString
+  first_name: MyString
+  last_name: MyString
+  subtotal_price: 9.99
+  total_price: 9.99

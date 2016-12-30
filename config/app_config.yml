@@ -1,0 +1,12 @@
+development:
+  # Amazon
+  aws_access_key_id: AKIAIRH5WWUU6NG7HXKQ
+  aws_secret_access_key: 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
+  # Paypal
+  sandbox_paypal_client_id: Aeg1DeeEXOwPQhO0h7QVwZja9Rwjp72wnGmLNVqKsJKarF0JizH9rwvPcXG22bYUnsfODIPuDOYCnePQ
+  sandbox_paypal_secret: EO0xOqeT8fmA695q0ITsW2I_s7ZXn2ZOrnP-ma1yi-Ju1HOZ5-ae1HmJtueiYFUGz0InibRpp0AAVNMJ
+  sandbox_account: vnmeteor-facilitator@gmail.com
+  sandbox_webhook:
+
+  # Stripe
+

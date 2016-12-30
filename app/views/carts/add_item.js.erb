@@ -1,0 +1,13 @@
+<% if @item && current_order.errors.blank? %>
+  $('#cart_header .cart-badge').html("<%= current_order.contents.total_items %>");
+  var existing = $("#cart_header .cart-items-js [cart_item='<%= @item.id %>']");
+  if(existing.length > 0) {
+    existing.replaceWith("<%= j render partial: 'carts/cart_item', locals: { item: @item } %>");
+  } else {
+    $("#cart_header .cart-items-js").prepend("<%= j render partial: 'carts/cart_item', locals: {item: @item} %>");
+  }
+  $('#cart_header .popup').removeClass('hidden');
+  $('#cart_header .browse').popup('show');
+<% else %>
+  toastr.error("<%= current_order.errors.first %>");
+<% end %>

@@ -1,0 +1,38 @@
+$pixels: 0, 5, 10, 15, 20, 25, 30, 50;
+
+@each $pixel in $pixels {
+  // Padding
+  .p-#{$pixel} {
+    padding: #{$pixel}px !important;
+  }
+  .pl-#{$pixel} {
+    padding-left: #{$pixel}px !important;
+  }
+  .pr-#{$pixel} {
+    padding-right: #{$pixel}px !important;
+  }
+  .pt-#{$pixel} {
+    padding-top: #{$pixel}px !important;
+  }
+  .pb-#{$pixel} {
+    padding-bottom: #{$pixel}px !important;
+  }
+
+  // Margin
+  .m-#{$pixel} {
+    margin: #{$pixel}px !important;
+  }
+  .ml-#{$pixel} {
+    margin-left: #{$pixel}px !important;
+  }
+  .mr-#{$pixel} {
+    margin-right: #{$pixel}px !important;
+  }
+  .mt-#{$pixel} {
+    margin-top: #{$pixel}px !important;
+  }
+  .mb-#{$pixel} {
+    margin-bottom: #{$pixel}px !important;
+  }
+}
+
