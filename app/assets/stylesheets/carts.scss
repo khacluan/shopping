@@ -1,7 +1,15 @@
-#cart_header .cart-badge {
-  top: 1em;
-  left: 81%;
-  line-height: 0.5em;
-  min-width: 1em;
-  min-height: 1em;
+#cart_header {
+  .items {
+    padding: 10px;
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+  .cart-badge {
+    top: 1em;
+    left: 81%;
+    line-height: 0.5em;
+    min-width: 1em;
+    min-height: 1em;
+  }
 }

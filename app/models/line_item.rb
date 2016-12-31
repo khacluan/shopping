@@ -24,9 +24,14 @@ class LineItem < ApplicationRecord
   # CALLBACKS
   before_create :calculate_prices
 
+  #########################
+  # INSTANCE METHODS
+  def subtotal
+    self.price * self.quantity
+  end
 
   #########################
-  # PRIVATE
+  # PRIVATE METHODS
   private
 
   def calculate_prices

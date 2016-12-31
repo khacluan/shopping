@@ -26,6 +26,6 @@ class Order < ApplicationRecord
   end
 
   def contents
-    OrderContents.new(self)
+    @contents ||= OrderContents.new(self)
   end
 end

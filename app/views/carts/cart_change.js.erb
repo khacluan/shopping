@@ -1,0 +1,7 @@
+<% if current_order.errors.blank? %>
+  $('#cart_header .cart-badge').html("<%= current_order.contents.total_items %>");
+  $('#cart_header .cart-items-js').html("<%= j render('carts/list_items') %>");
+  $('#cart_header .browse').popup('show');
+<% else %>
+  toastr.error("<%= current_order.errors.first %>");
+<% end %>
