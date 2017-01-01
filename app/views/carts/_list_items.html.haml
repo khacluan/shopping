@@ -1,7 +1,7 @@
 - if current_order.line_items.present?
   .ui.two.column.relaxed.divided.grid.items.cart-items-js{style: 'width: 300px;'}
     = render partial: 'carts/cart_item', collection: current_order.line_items, as: :item
-  = link_to 'Checkout', checkout_carts_path, class: 'ui fluid button positive mt-30'
+  = link_to 'Checkout', delivery_checkout_path, class: 'ui fluid button positive mt-30'
 - else
   .ui.items.two.column.relaxed.divided.grid{style: 'width: 300px;'}
     .item

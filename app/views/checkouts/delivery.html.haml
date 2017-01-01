@@ -1,0 +1,67 @@
+%h1 Delivery
+.ui.grid
+  .seven.wide.column
+    = form_for current_order, url: submit_delivery_checkout_path, html: { class: 'ui form' } do |f|
+      %h4.ui.dividing.header Shipping Information
+      .field
+        = f.label :name, 'Name of Receiver'
+        = f.text_field :name
+      .field
+        = f.label :street, 'Street address'
+        = f.text_field :street
+      .field
+        = f.label :phone, 'Phone of Receiver'
+        = f.text_field :phone
+      .two.fields
+        .field
+          = f.label :country_id
+          = f.select :country_id, options_for_select(Unit.country.pluck(:name, :id)), {}, class: 'ui fluid dropdown'
+        .field
+          = f.label :city_id
+          = f.select :city_id, options_for_select(Unit.city.pluck(:name, :id)), {}, class: 'ui fluid search dropdown selection cities', attribute: 'city_id'
+      .two.fields
+        .field
+          = f.label :district_id
+          = f.select :district_id, options_for_select([]), {}, class: 'ui fluid dropdown selection districts', attribute: 'district_id'
+        .field
+          = f.label :ward_id
+          = f.select :ward_id, options_for_select([]), {}, class: 'ui fluid dropdown selection wards'
+      .field
+        .ui.checkbox
+          = check_box_tag :has_note
+          = label_tag :has_note, 'Write note for this order'
+      .field.hide
+        = f.label :note
+        = f.text_field :note
+      .field.centered
+        = f.submit 'Continue', class: 'ui button positive centered'
+
+  .nine.wide.column
+    Cart Here
+
+:javascript
+  $('select.dropdown').dropdown();
+  $('#order_district_id').remoteChained({
+    parents: '#order_city_id',
+    attribute: 'attribute',
+    url: '/api/v1/units/districts_by_city',
+    loading: '...',
+    formatData: function(json) {
+      return json.map(function(item) {
+        return [item.id, item.name];
+      });
+    }
+  });
+
+  $('#order_ward_id').remoteChained({
+    parents: '#order_district_id',
+    attribute: 'attribute',
+    url: '/api/v1/units/wards_by_district',
+    loading: '...',
+    formatData: function(json) {
+      return json.map(function(item) {
+        return [item.id, item.name];
+      });
+    }
+  });
+
