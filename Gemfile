@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
+gem 'omniauth-facebook'
 gem 'aasm'
 gem 'vacuum'
 gem 'kaminari'

@@ -10,8 +10,8 @@
     .header.item.sticky-logo-js.pl-0.hide{:href => "#"}
       = image_tag 'logo.png', class: 'logo mr-10'
       Beauty Shop
-    %a.item.pl-0{:href => "#"} Blog
-    %a.item{:href => "#"} Articles
+    %a.item.pl-0{:href => "#"} How
+    %a.item{:href => "#"} Special
     .right.menu
       .item
         .ui.search
@@ -20,19 +20,23 @@
             %i.search.icon
           .results
       = render 'layouts/cart_header'
-      %a.ui.dropdown.item{:href => "#", :tabindex => "0"}
-        = image_tag 'missing', size: '46x46', class: 'ui circular image'
-        %i.dropdown.icon
-        .menu{:tabindex => "-1"}
-          .item Link Item
-          .item Link Item
-          .divider
-          .header Header Item
+      - if user_signed_in?
+        .ui.dropdown.item{:href => "#", :tabindex => "0"}
+          - if current_user.avatar.file?
+            = image_tag current_user.avatar.url(:thumb), size: '46x46', class: 'ui circular image'
+          - else
+            = image_tag 'missing', size: '46x46', class: 'ui circular image'
+          %i.dropdown.icon
+          .menu{:tabindex => "-1"}
+            .item Link Item
+            .item Link Item
+            = link_to destroy_user_session_path, method: :delete, class: 'item' do
+              = semantic_icon 'sign out'
+              Logout
+      - else
+        .menu
           .item
-            %i.dropdown.icon
-            Sub Menu
-            .menu
-              .item Link Item
-              .item Link Item
-          .item Link Item
+            = link_to new_user_session_path, class: 'ui button positive' do
+              = semantic_icon 'sign in'
+              Sign in
 

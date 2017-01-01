@@ -1,0 +1,59 @@
+.ui.card.centered
+  .content
+    %h2 Log in
+    - if devise_mapping.omniauthable?
+      - resource_class.omniauth_providers.each do |provider|
+        = link_to omniauth_authorize_path(resource_name, provider), class: 'ui fluid button facebook' do
+          = semantic_icon 'facebook'
+          Sign in with #{OmniAuth::Utils.camelize(provider)}
+
+    %hr.or
+
+    = form_for(resource, as: resource_name, url: session_path(resource_name),
+      html: { class: 'ui form auth-form-js' }) do |f|
+      .field
+        = f.label :email
+        = f.email_field :email, autofocus: true
+      .field.inline
+        .ui.checkbox
+          = check_box_tag :is_new_account
+          = label_tag :is_new_account, 'I am a new user'
+      .field#need_fields_for_signup.hide
+        .field
+          = f.label :name, 'Your name'
+          = f.text_field :name
+        .field
+          = f.label :phone
+          = f.text_field :phone
+      .field
+        = f.label :password
+        = f.password_field :password, autocomplete: "off"
+      - if devise_mapping.rememberable?
+        .field.inline
+          .ui.checkbox
+            = f.check_box :remember_me
+            = f.label :remember_me
+      .actions
+        = f.submit "Log in", class: 'ui button positive login-btn-js'
+        = f.submit 'Create Account', class: 'ui button positive registration-btn-js hide'
+    = render "devise/shared/links"
+
+:javascript
+  $(document.body).on('change', 'form.auth-form-js #is_new_account', function() {
+    var $need_fields = $('#need_fields_for_signup');
+    var login_path = "#{session_path(resource_name)}";
+    var registration_path = "#{registration_path(resource_name)}";
+    if($(this).is(':checked')) {
+      $need_fields.find('input').prop('disabled', false);
+      $(this).closest('form').attr('action', registration_path);
+      $('.registration-btn-js').removeClass('hide');
+      $('.login-btn-js').addClass('hide');
+    } else {
+      $need_fields.find('input').prop('disabled', true);
+      $(this).closest('form').attr('action', login_path);
+      $('.login-btn-js').removeClass('hide');
+      $('.registration-btn-js').addClass('hide');
+    }
+    $need_fields.toggleClass('hide');
+  });
+
