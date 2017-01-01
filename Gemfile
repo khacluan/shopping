@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
+gem 'httparty', require: false
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'aasm'
@@ -22,6 +23,8 @@ gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem "paperclip", "~> 5.0.0"
 gem "react_on_rails", "~> 6"
 gem 'semantic-ui-sass', git: 'git@github.com:khacluan/semantic-ui-sass.git'
+gem 'ancestry'
+gem 'active_model_serializers', '~> 0.10.0'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

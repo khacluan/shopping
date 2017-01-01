@@ -5,4 +5,5 @@
 //= require turbolinks
 //= require semantic-ui
 //= require toastr.min
+//= require jquery.chained.remote
 //= require carts

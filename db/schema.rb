@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170101070801) do
+ActiveRecord::Schema.define(version: 20170101130024) do
 
   create_table "line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",                                        null: false
@@ -26,20 +26,29 @@ ActiveRecord::Schema.define(version: 20170101070801) do
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
     t.integer  "user_id"
+    t.integer  "country_id"
+    t.integer  "province_id"
+    t.integer  "district_id"
     t.string   "ip_address"
     t.string   "status"
+    t.string   "name"
     t.string   "phone"
-    t.string   "address"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.decimal  "shipping_price",   precision: 8, scale: 2
-    t.decimal  "tax_price",        precision: 8, scale: 2
-    t.decimal  "discounted_price", precision: 8, scale: 2
-    t.decimal  "subtotal_price",   precision: 8, scale: 2
-    t.decimal  "total_price",      precision: 8, scale: 2
+    t.string   "address",          limit: 400
+    t.string   "street"
+    t.string   "ward"
+    t.string   "note"
+    t.boolean  "gift",                                                 default: false
+    t.decimal  "shipping_price",               precision: 8, scale: 2
+    t.decimal  "tax_price",                    precision: 8, scale: 2
+    t.decimal  "discounted_price",             precision: 8, scale: 2
+    t.decimal  "subtotal_price",               precision: 8, scale: 2
+    t.decimal  "total_price",                  precision: 8, scale: 2
+    t.index ["country_id"], name: "index_orders_on_country_id", using: :btree
+    t.index ["district_id"], name: "index_orders_on_district_id", using: :btree
+    t.index ["province_id"], name: "index_orders_on_province_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
@@ -68,6 +77,25 @@ ActiveRecord::Schema.define(version: 20170101070801) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "stock",                                                    default: 0
+  end
+
+  create_table "units", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.string   "code"
+    t.string   "stand_for"
+    t.string   "post_code"
+    t.string   "area_number"
+    t.string   "slug"
+    t.string   "unit_type"
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_units_on_ancestry", using: :btree
+    t.index ["code"], name: "index_units_on_code", using: :btree
+    t.index ["name"], name: "index_units_on_name", using: :btree
+    t.index ["slug"], name: "index_units_on_slug", using: :btree
+    t.index ["stand_for"], name: "index_units_on_stand_for", using: :btree
+    t.index ["unit_type"], name: "index_units_on_unit_type", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

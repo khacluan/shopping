@@ -11,10 +11,27 @@ Rails.application.routes.draw do
       delete  :remove_item
       post    :add_discount
       delete  :remove_discount
-      get     :checkout
-      post    :checkout_process
+    end
+  end
+  resource :checkout, path: '/checkout/step', only: [] do
+    collection do
+      get     :delivery
+      patch   :submit_delivery
       get     :payment
-      post    :payment_process
+      patch   :submit_payment
+      post    :success
+    end
+  end
+
+  # API
+  namespace :api do
+    namespace :v1 do
+      resources :units, only: [] do
+        collection do
+          get :districts_by_city
+          get :wards_by_district
+        end
+      end
     end
   end
 end
